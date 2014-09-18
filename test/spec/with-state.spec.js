@@ -68,9 +68,9 @@ define(function (require) {
             });
         });
 
-        describe('this.setState', function () {
+        describe('this.replaceState', function () {
             it('should replace this.state', function () {
-                instanceA.setState({
+                instanceA.replaceState({
                     count: 2
                 });
                 expect(instanceA.state.count).toBe(2);
@@ -78,7 +78,7 @@ define(function (require) {
             });
 
             it('handles no data', function () {
-                instanceA.setState();
+                instanceA.replaceState();
                 expect(instanceA.state.alive).toBe(true);
             });
         });

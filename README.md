@@ -30,10 +30,10 @@ var ToggleButton = flight.component(
             this.on('click', this.toggle);
 
             // Track changes to the state using advice
-            this.after('setState', this.update);
+            this.after('replaceState', this.update);
 
-            // Transition the state using `setState`
-            this.setState({
+            // Transition the state using `replaceState`
+            this.replaceState({
                 active: this.attr.initiallyActive
             });
         });
