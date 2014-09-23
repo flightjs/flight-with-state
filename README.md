@@ -12,6 +12,8 @@ bower install --save flight-with-state
 
 ## Example
 
+Here's an example component that uses with `withState`.
+
 ```js
 var ToggleButton = flight.component(
     // Use `withState` before your component definition.
@@ -51,6 +53,77 @@ var ToggleButton = flight.component(
         };
     }
 );
+```
+
+## API
+
+### `initialState`
+
+`initialState`, like `attributes`, takes an object to set up the first `state` of an instance of a component. If you can pass a function, it will be called at initialize-time to produce the initial value. This allows you to react to the attrs or node of a component to produce the initial state.
+
+For example:
+
+```js
+this.initialState({
+    active: false,
+    id: function () {
+        return this.attr.id;
+    }
+})
+```
+
+*Warning*: data structures as values in `initialState` will be shared by instances of a component. If you need a new data structure each time, return it from a function.
+
+### `replaceState`
+
+`replaceState` changes the component's state to a new value. You can react to a change to state using `this.after('replaceState', this.doSomething)`.
+
+```js
+this.replaceState({
+    active: false
+});
+// this.state.active === false
+this.replaceState({
+    id: '123'
+});
+// this.state.id === '123'
+// this.state.active === undefined
+```
+
+### `mergeState`
+
+`mergeState` shallow merges an object into the component's state.
+
+```js
+this.mergeState({
+    active: false
+});
+// this.state.active === false
+this.mergeState({
+    id: '123'
+});
+// this.state.id === '123'
+// this.state.active === false
+```
+
+### `fromState`
+
+Make a function that returns the piece of state specified by the `key` passed.
+
+```js
+var getActive = this.fromState('active');
+ ...
+ getActive(); // returns this.state.active
+```
+
+### `toState`
+
+Make a function that sets the state at `key` to the value it is called with.
+
+```js
+var setActive = this.toState('active');
+...
+setActive(false); // sets this.state.active to false
 ```
 
 ## Development
