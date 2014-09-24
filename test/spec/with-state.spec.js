@@ -21,13 +21,21 @@ define(function (require) {
         // Initialize a component and attach it to the DOM
         beforeEach(function () {
             ComponentA = makeComponent(function () {
+                this.attributes({
+                    initialNumber: 10
+                });
+
                 this.initialState({
                     alive: true,
                     count: 0,
                     fn: function () {
                         return true;
+                    },
+                    currentNumber: function () {
+                        return this.attr.initialNumber;
                     }
                 });
+
                 this.initialState({
                     merged: true
                 });
@@ -57,6 +65,10 @@ define(function (require) {
 
             it('merges multiple calles', function () {
                 expect(instanceA.state.merged).toBe(true);
+            });
+
+            it('should be able to access attrs', function () {
+                expect(instanceA.state.currentNumber).toBe(10);
             });
         });
 
