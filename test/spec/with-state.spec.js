@@ -124,6 +124,13 @@ define(function (require) {
                 expect(fn.call(instanceA)).toBe(true);
             });
         });
+
+        describe('this.fromAttr', function () {
+            it('should make a function that returns data from the specified attr key', function () {
+                var fn = instanceA.fromAttr('initialNumber');
+                expect(fn.call(instanceA)).toBe(10);
+            });
+        });
     });
 });
 
