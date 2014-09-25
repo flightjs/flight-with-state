@@ -131,6 +131,18 @@ define(function (require) {
                 expect(fn.call(instanceA)).toBe(10);
             });
         });
+
+        describe('this.stateChanged', function () {
+            it('should be advice-able to react to state changes', function () {
+                var data;
+                instanceA.after('stateChanged', function (state) {
+                    data = state;
+                });
+                var newState = {};
+                instanceA.replaceState(newState);
+                expect(data).toBe(newState);
+            });
+        });
     });
 });
 
