@@ -3,17 +3,39 @@
   "version": "1.1.1",
   "devDependencies": {
     "grunt": "~0.4.5",
-    "grunt-bump": "latest",
+    "grunt-bump": "^0.0.15",
     "karma": "~0.12.6",
     "karma-cli": "0.0.4",
     "karma-jasmine": "~0.1.0",
     "karma-requirejs": "~0.2.2",
     "karma-chrome-launcher": "*",
     "karma-firefox-launcher": "*",
-    "matchdep": "latest"
+    "matchdep": "^0.3.0",
+    "requirejs": "^2.1.15"
   },
   "scripts": {
     "test": "karma start --single-run --reporters dots --browsers Firefox",
     "watch-test": "karma start"
-  }
+  },
+  "description": "A Flight mixin for storing and reacting to change in a component's internal state.",
+  "main": "lib/with-state.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flightjs/flight-with-state.git"
+  },
+  "keywords": [
+    "flight",
+    "flightjs",
+    "state",
+    "flight-toolbox"
+  ],
+  "author": "Tom Ashworth <ta@twitter.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flightjs/flight-with-state/issues"
+  },
+  "homepage": "https://github.com/flightjs/flight-with-state"
 }
