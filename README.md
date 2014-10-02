@@ -32,7 +32,7 @@ var ToggleButton = flight.component(
             this.on('click', this.toggle);
 
             // Track changes to the state using advice
-            this.after('replaceState', this.update);
+            this.after('stateChanged', this.update);
 
             // Transition the state using `replaceState`
             this.replaceState({
@@ -55,10 +55,10 @@ var ToggleButton = flight.component(
 );
 ```
 
-Tracking changes to your state should be done with advice on `replaceState`:
+Tracking changes to your state should be done with advice on `stateChanged`:
 
 ```js
-this.after('replaceState', this.reactToStateChange);
+this.after('stateChanged', this.reactToStateChange);
 ```
 
 ## API
