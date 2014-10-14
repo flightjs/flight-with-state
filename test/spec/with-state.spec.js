@@ -116,6 +116,12 @@ define(function (require) {
                 fn.call(instanceA, 3);
                 expect(instanceA.state.count).toBe(3);
             });
+
+            it('should close over the component context', function () {
+                var fn = instanceA.toState('count');
+                fn(3);
+                expect(instanceA.state.count).toBe(3);
+            });
         });
 
         describe('this.fromState', function () {
@@ -123,12 +129,22 @@ define(function (require) {
                 var fn = instanceA.fromState('alive');
                 expect(fn.call(instanceA)).toBe(true);
             });
+
+            it('should close over the component context', function () {
+                var fn = instanceA.fromState('alive');
+                expect(fn()).toBe(true);
+            });
         });
 
         describe('this.fromAttr', function () {
             it('should make a function that returns data from the specified attr key', function () {
                 var fn = instanceA.fromAttr('initialNumber');
                 expect(fn.call(instanceA)).toBe(10);
+            });
+
+            it('should close over the component context', function () {
+                var fn = instanceA.fromAttr('initialNumber');
+                expect(fn()).toBe(10);
             });
         });
 
