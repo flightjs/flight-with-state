@@ -118,8 +118,8 @@ Make a function that returns the piece of state specified by the `key` passed.
 
 ```js
 var getActive = this.fromState('active');
- ...
- getActive(); // returns this.state.active
+...
+getActive(); // returns this.state.active
 ```
 
 ### `toState`
@@ -130,6 +130,16 @@ Make a function that sets the state at `key` to the value it is called with.
 var setActive = this.toState('active');
 ...
 setActive(false); // sets this.state.active to false
+```
+
+### `fromAttr`
+
+Make a function that returns a components attributes, specified by the `key` passed.
+
+```js
+var id = this.fromAttr('id');
+...
+id(); // returns this.attr.id
 ```
 
 ## Development
