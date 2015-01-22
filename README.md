@@ -1,6 +1,6 @@
 # flight-with-state
 
-[![Build Status](https://secure.travis-ci.org/<username>/flight-with-state.png)](http://travis-ci.org/<username>/flight-with-state)
+[![Build Status](https://secure.travis-ci.org/flightjs/flight-with-state.png)](http://travis-ci.org/flightjs/flight-with-state)
 
 A [Flight](https://github.com/flightjs/flight) mixin for storing and reacting to change in a component's internal state.
 
