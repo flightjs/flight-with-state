@@ -79,6 +79,19 @@ define(function (require) {
             it('should take a function that returns a full initial state data', function () {
                 expect(instanceAofB.state.alive).toBe(true);
             });
+
+            it('should throw on multiple calls', function () {
+                expect(function () {
+                    makeComponent(function () {
+                        this.initialState({
+                            alive: true
+                        });
+                        this.initialState({
+                            dead: true
+                        });
+                    });
+                }).toThrow();
+            });
         });
 
         describe('this.state', function () {
