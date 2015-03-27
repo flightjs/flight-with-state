@@ -15,8 +15,10 @@ define(function (require) {
         }
 
         var ComponentA;
-        var instanceA;
-        var instanceB;
+        var ComponentB;
+        var instanceAofA;
+        var instanceBofA;
+        var instanceAofB;
 
         // Initialize a component and attach it to the DOM
         beforeEach(function () {
@@ -36,110 +38,117 @@ define(function (require) {
                     }
                 });
 
-                this.initialState({
-                    merged: true
+            });
+
+            ComponentB = makeComponent(function () {
+                this.initialState(function (existingState) {
+                    return {
+                        alive: true
+                    };
                 });
             });
 
-            instanceA = initializeComponent(ComponentA);
-            instanceB = initializeComponent(ComponentA);
+            instanceAofA = initializeComponent(ComponentA);
+            instanceBofA = initializeComponent(ComponentA);
+            instanceAofB = initializeComponent(ComponentB);
         });
 
         afterEach(function () {
             ComponentA && ComponentA.teardownAll();
+            ComponentB && ComponentB.teardownAll();
         });
 
         describe('initialState', function () {
             it('should add this.state', function () {
-                expect(instanceA).toBeDefined();
-                expect(instanceA.state).toBeDefined();
+                expect(instanceAofA).toBeDefined();
+                expect(instanceAofA.state).toBeDefined();
             });
 
             it('propagates initialState to this.state', function () {
-                expect(instanceA.state.alive).toBe(true);
+                expect(instanceAofA.state.alive).toBe(true);
             });
 
             it('calls functions defined on initialState to this.state', function () {
-                expect(instanceA.state.fn).toBe(true);
-            });
-
-            it('merges multiple calles', function () {
-                expect(instanceA.state.merged).toBe(true);
+                expect(instanceAofA.state.fn).toBe(true);
             });
 
             it('should be able to access attrs', function () {
-                expect(instanceA.state.currentNumber).toBe(10);
+                expect(instanceAofA.state.currentNumber).toBe(10);
+            });
+
+            it('should take a function that returns a full initial state data', function () {
+                expect(instanceAofB.state.alive).toBe(true);
             });
         });
 
         describe('this.state', function () {
             it('should not be shared between instances', function () {
-                expect(instanceA.state).not.toBe(instanceB.state);
-                instanceA.state.alive = false;
-                expect(instanceB.state.alive).toBe(true);
+                expect(instanceAofA.state).not.toBe(instanceBofA.state);
+                instanceAofA.state.alive = false;
+                expect(instanceBofA.state.alive).toBe(true);
             });
         });
 
         describe('this.replaceState', function () {
             it('should replace this.state', function () {
-                instanceA.replaceState({
+                instanceAofA.replaceState({
                     count: 2
                 });
-                expect(instanceA.state.count).toBe(2);
-                expect(instanceA.state.alive).not.toBeDefined();
+                expect(instanceAofA.state.count).toBe(2);
+                expect(instanceAofA.state.alive).not.toBeDefined();
             });
 
             it('handles no data', function () {
-                instanceA.replaceState();
-                expect(instanceA.state.alive).toBe(true);
+                instanceAofA.replaceState();
+                expect(instanceAofA.state.alive).toBe(true);
             });
         });
 
         describe('this.mergeState', function () {
             it('should merge onto this.state', function () {
-                instanceA.mergeState({
+                instanceAofA.mergeState({
                     count: 2
                 });
-                expect(instanceA.state.count).toBe(2);
-                expect(instanceA.state.alive).toBe(true);
+                expect(instanceAofA.state.count).toBe(2);
+                expect(instanceAofA.state.alive).toBe(true);
             });
 
             it('handles no data', function () {
-                instanceA.mergeState();
-                expect(instanceA.state.alive).toBe(true);
+                instanceAofA.mergeState();
+                expect(instanceAofA.state.alive).toBe(true);
             });
         });
 
         describe('this.toState', function () {
             it('should make a function that mutates the specified key', function () {
-                var fn = instanceA.toState('count');
-                fn.call(instanceA, 3);
-                expect(instanceA.state.count).toBe(3);
+                var fn = instanceAofA.toState('count');
+                fn.call(instanceAofA, 3);
+                expect(instanceAofA.state.count).toBe(3);
             });
         });
 
         describe('this.fromState', function () {
             it('should make a function that returns data from the specified key', function () {
-                var fn = instanceA.fromState('alive');
-                expect(fn.call(instanceA)).toBe(true);
+                var fn = instanceAofA.fromState('alive');
+                expect(fn.call(instanceAofA)).toBe(true);
             });
         });
 
         describe('this.fromAttr', function () {
             it('should make a function that returns data from the specified attr key', function () {
-                var fn = instanceA.fromAttr('initialNumber');
-                expect(fn.call(instanceA)).toBe(10);
+                var fn = instanceAofA.fromAttr('initialNumber');
+                expect(fn.call(instanceAofA)).toBe(10);
             });
         });
 
         describe('this.stateChanged', function () {
             it('should be advice-able to react to state changes', function () {
                 var data;
-                instanceA.after('stateChanged', function (state) {
+                instanceAofA.after('stateChanged', function (state) {
                     data = state;
                 });
                 var newState = {};
-                instanceA.replaceState(newState);
+                instanceAofA.replaceState(newState);
                 expect(data).toBe(newState);
             });
         });
