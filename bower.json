@@ -1,6 +1,5 @@
 {
   "name": "flight-with-state",
-  "version": "0.0.0",
   "main": "lib/with-state.js",
   "dependencies": {
     "flight": "^1.2.0"
