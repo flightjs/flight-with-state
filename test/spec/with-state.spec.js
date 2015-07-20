@@ -16,9 +16,11 @@ define(function (require) {
 
         var ComponentA;
         var ComponentB;
+        var ComponentC;
         var instanceAofA;
         var instanceBofA;
         var instanceAofB;
+        var instanceAofC;
 
         // Initialize a component and attach it to the DOM
         beforeEach(function () {
@@ -48,20 +50,29 @@ define(function (require) {
                 });
             });
 
+            ComponentC = makeComponent(function () {});
+
             instanceAofA = initializeComponent(ComponentA);
             instanceBofA = initializeComponent(ComponentA);
             instanceAofB = initializeComponent(ComponentB);
+            instanceAofC = initializeComponent(ComponentC);
         });
 
         afterEach(function () {
             ComponentA && ComponentA.teardownAll();
             ComponentB && ComponentB.teardownAll();
+            ComponentC && ComponentC.teardownAll();
         });
 
         describe('initialState', function () {
             it('should add this.state', function () {
                 expect(instanceAofA).toBeDefined();
                 expect(instanceAofA.state).toBeDefined();
+            });
+
+            it('should add empty state if initialState is not called', function () {
+                expect(instanceAofC).toBeDefined();
+                expect(instanceAofC.state).toEqual({});
             });
 
             it('propagates initialState to this.state', function () {
