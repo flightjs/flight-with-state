@@ -1,6 +1,6 @@
 {
   "name": "flight-with-state",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "devDependencies": {
     "bower": "^1.4.1",
     "grunt": "~0.4.5",
