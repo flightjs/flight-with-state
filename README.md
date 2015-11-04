@@ -7,7 +7,7 @@ A [Flight](https://github.com/flightjs/flight) mixin for storing and reacting to
 ## Installation
 
 ```bash
-bower install --save flight-with-state
+npm install --save flight-with-state
 ```
 
 ## Example
@@ -156,25 +156,13 @@ this.initialState({
 
 ## Development
 
-Development of this component requires [Bower](http://bower.io) to be globally
-installed:
+To develop this module, clone the repository and run:
 
-```bash
-npm install -g bower
+```
+$ npm install && npm test
 ```
 
-Then install the Node.js and client-side dependencies by running the following
-commands in the repo's root directory.
-
-```bash
-npm install & bower install
-```
-
-To continuously run the tests in Chrome during development, just run:
-
-```bash
-npm run watch-test
-```
+If the tests pass, you have a working environment. You shouldn't need any external dependencies.
 
 ## Contributing to this project
 
