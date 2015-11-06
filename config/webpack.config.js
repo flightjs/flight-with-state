@@ -9,7 +9,7 @@ var plugins = [
     new OccurenceOrderPlugin()
 ];
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'publish') {
     plugins.push(
         new UglifyJsPlugin({
             compress: {
