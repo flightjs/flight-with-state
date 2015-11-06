@@ -1,7 +1,7 @@
 {
   "name": "flight-with-state",
   "description": "A Flight mixin for storing and reacting to change in a component's internal state.",
-  "main": "dist/flght-with-state.js",
+  "main": "dist/flight-with-state.js",
   "files": [
     "dist"
   ],
