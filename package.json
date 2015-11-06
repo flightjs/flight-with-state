@@ -2,6 +2,9 @@
   "name": "flight-with-state",
   "description": "A Flight mixin for storing and reacting to change in a component's internal state.",
   "main": "dist/flght-with-state.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rm -rf ./dist && NODE_ENV=publish webpack --config config/webpack.config.publish.js --sort-assets-by --progress",
     "lint": "eslint config src",
