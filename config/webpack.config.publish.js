@@ -7,5 +7,8 @@ module.exports = Object.assign(baseConfig, {
         filename: 'flight-with-state.js',
         libraryTarget: 'umd',
         path: constants.BUILD_DIRECTORY
-    }
+    },
+    externals: [
+        'lodash.merge'
+    ]
 });
