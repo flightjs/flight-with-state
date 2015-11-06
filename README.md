@@ -10,6 +10,8 @@ A [Flight](https://github.com/flightjs/flight) mixin for storing and reacting to
 npm install --save flight-with-state
 ```
 
+This module requires `lodash.merge` as a peer dependency.
+
 ## Example
 
 Here's an example component that uses with `withState`.
