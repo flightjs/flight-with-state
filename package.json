@@ -45,7 +45,7 @@
     "semantic-release": "^4.3.5",
     "webpack": "^1.12.1"
   },
-  "peerDependencies": {
+  "dependencies": {
     "flightjs": "^1.5.1",
     "lodash.merge": "^3.3.2"
   },
