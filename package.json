@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "flightjs": "^1.5.1",
-    "lodash.merge": "^3.3.2"
+    "lodash.assign": "^3.2.0"
   },
   "repository": {
     "type": "git",

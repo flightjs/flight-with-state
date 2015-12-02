@@ -31,7 +31,8 @@ describe('withState', function () {
                 fn: () => true,
                 currentNumber: function () {
                     return this.attr.initialNumber;
-                }
+                },
+                arr: [1, 2, 3]
             });
         });
 
@@ -133,6 +134,13 @@ describe('withState', function () {
         it('handles no data', function () {
             instanceAofA.mergeState();
             expect(instanceAofA.state.alive).toBe(true);
+        });
+
+        it('should not deep merge', function () {
+            instanceAofA.mergeState({
+                arr: []
+            });
+            expect(instanceAofA.state.arr.length).toBe(0);
         });
     });
 
