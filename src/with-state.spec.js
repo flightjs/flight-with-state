@@ -142,6 +142,14 @@ describe('withState', function () {
             });
             expect(instanceAofA.state.arr.length).toBe(0);
         });
+
+        it('should produce different objects', function () {
+            var prevState = instanceAofA.state;
+            instanceAofA.mergeState({
+                alive: false
+            });
+            expect(instanceAofA.state).not.toBe(prevState);
+        });
     });
 
     describe('this.toState', function () {

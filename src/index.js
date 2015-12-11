@@ -79,7 +79,7 @@ export default function withState() {
      * Returns the new state.
      */
     this.mergeState = function (tx) {
-        return this.replaceState(merge(this.state, tx));
+        return this.replaceState(merge({}, this.state, tx));
     };
 
     /**
