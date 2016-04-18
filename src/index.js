@@ -55,8 +55,11 @@ export default function withState() {
         if (!state || typeof state !== 'object') {
             return;
         }
+
+        const oldState = this.state;
+
         this.state = state;
-        this.stateChanged(this.state);
+        this.stateChanged(this.state, oldState);
         return this.state;
     };
 
@@ -139,8 +142,13 @@ export default function withState() {
 
     /**
      * Noop for advice around state changes.
+     *
+     * Having access to both the current `state`
+     * and `previousState` means you can add logic
+     * on state changes to decide whether you need
+     * to act on them or not (e.g. re-rendering).
      */
-    this.stateChanged = function () {};
+    this.stateChanged = function (state, previousState) {};
 
     this.after('initialize', function () {
         this._stateDef = (this._stateDef || noop);
