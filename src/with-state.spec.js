@@ -184,6 +184,17 @@ describe('withState', function () {
             instanceAofA.replaceState(newState);
             expect(data).toBe(newState);
         });
+
+        it('should recieve old state when state changes', function () {
+            var result;
+            var newState = {};
+            instanceAofA.replaceState(newState);
+            instanceAofA.after('stateChanged', function (state, oldState) {
+                result = oldState;
+            });
+            instanceAofA.replaceState({});
+            expect(result).toBe(newState);
+        });
     });
 });
 
